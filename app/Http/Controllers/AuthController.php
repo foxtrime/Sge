@@ -68,4 +68,28 @@ class AuthController extends Controller
 			return back()->withErrors('Senha atual não confere');
 		}
 	}
+
+	public function create()
+    {
+        $usuarios = User::all();
+        //dd($usuarios);
+        return view('authe/create', compact('usuarios'));
+    }
+
+    public function store(Request $request)
+    {
+		
+		$md5 = Hash::make($request->password);
+		// dd($md5);
+		
+		$user = User::create([
+
+			'name' => $request->name,
+			'email' => $request->email,
+			'password' => $md5,
+			]
+		);
+        
+        return redirect()->to('/register');
+    }
 }

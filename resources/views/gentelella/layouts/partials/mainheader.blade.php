@@ -1,9 +1,9 @@
 <div class="top_nav">
 	<div class="nav_menu">
 		<nav>
-			<div class="nav toggle">
+			{{-- <div class="nav toggle">
 				<a id="menu_toggle"><i class="fa fa-bars"></i></a>
-			</div>
+			</div> --}}
  
 			<ul class="nav navbar-nav navbar-right">
 				<li class="">
@@ -26,7 +26,7 @@
 					</ul>
 				</li>
 
-				<Notificacoes></Notificacoes>
+				{{-- <Notificacoes></Notificacoes> --}}
 	
 			</ul>
 		</nav>

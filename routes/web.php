@@ -23,7 +23,15 @@ Route::group(['middleware'=>['auth']], function(){
         return redirect()->route('login');
         });
 /*============================================================================*/
+    
 
+/*==================================REGISTRAR=================================*/
+Route::get('/register', 'AuthController@create');
+Route::post('register', 'AuthController@store');
+/*============================================================================*/
+
+
+// Auth::routes();
 //===========================Password=======================================
     Route::get 	('/alterasenha',		'AuthController@AlteraSenha');
 	Route::post	('/salvasenha',   		'AuthController@SalvarSenha');
