@@ -3,23 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\User;
+use Auth;
 
 class AuthController extends Controller
 {
-    // public function login()
-	// {
+    public function index()
+	{
+		return view('auth.login');
+	}
+	
+	public function login(Request $request)
+    {
+		// dd($request);
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        $credentials = ['email'=>$request->email,'password'=>$request->password];
 
-	// 	//testa se o usuário já está logado e redireciona para a home
-	// 	if(Auth::user())
-	// 	{
-	// 		return redirect()->intended('/');
-	// 	}
-		
-	// 	return view('auth.login');
-    // }
+        if(Auth::attempt($credentials)){
+            return redirect()->intended('home');
+        }else{
+            return redirect()->back()->with('msg','Acesso Negado, Email ou senha invalida');
+        }
+    }
 
     public function logout()
 	{
@@ -30,10 +40,32 @@ class AuthController extends Controller
 		return redirect("login");
     }
     
-    // public function entrar(Request $request)
-    // {
-
-    // }
+    public function AlteraSenha()
+	{
+		$usuario = Auth::user();
+		return view('auth.altera_senha',compact('usuario'));    	
+    }
     
+    public function SalvarSenha(Request $request)
+	{
+	    // Validar
+		$this->validate($request, [
+			'password_atual'        => 'required',
+			'password'              => 'required|min:6|confirmed',
+			'password_confirmation' => 'required|min:6'
+		]);
 
+		// Obter o usuário
+		$usuario = User::find(Auth::user()->id);
+
+		if (Hash::check($request->password_atual, $usuario->password))
+		{
+
+			$usuario->update(['password' => bcrypt($request->password)]);            
+
+			return redirect('/home')->with('sucesso','Senha alterada com sucesso.');
+		}else{
+			return back()->withErrors('Senha atual não confere');
+		}
+	}
 }

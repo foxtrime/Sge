@@ -18,9 +18,10 @@
 							</a>
 						</li>
 						<li>
-							<a class="dropdown-item" href="{{ route('logout') }}" >
+							{{-- <a class="dropdown-item" href="{{ route('logout') }}" >
 								<i class="fa fa-sign-out pull-right"></i> Sair do sistema
-							</a>
+							</a> --}}
+							
 						</li>
 					</ul>
 				</li>

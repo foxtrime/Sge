@@ -48,7 +48,8 @@
 			
 
 			<li>
-				<a href="{{ route('logout')}}"><i class="fa fa-sign-out"></i> Sair do sistema </a>
+				{{-- <a href="{{ route('logout')}}"><i class="fa fa-sign-out"></i> Sair do sistema </a> --}}
+				<a href="{{ url('logout')}}"><i class="fa fa-sign-out"></i> Sair do sistema</a>
 			</li>
 
 		</ul>	

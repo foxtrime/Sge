@@ -41,7 +41,7 @@
 						<div class="navbar nav_title" style="border: 0; text-align: center;background: #330707eb">
 							<a href="{{ route('home')}}" class="site_title">
 								<span style="color: #bfa15f; ">Sistema</span>
-								<span style="font-size: 8px">V0.0.1</span> </a>
+								<span style="font-size: 8px">V0.0.2</span> </a>
 						</div>
 
 						<div class="clearfix"></div>
